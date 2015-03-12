@@ -1,36 +1,25 @@
 package org.jush.uiplayground;
 
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 public class RotatePageTransformer implements ViewPager.PageTransformer {
-    private static final float MIN_SCALE = 0;
-    private static final float MIN_ALPHA = 0f;
 
     public void transformPage(View view, float position) {
         int pageWidth = view.getWidth();
         int pageHeight = view.getHeight();
-        Log.d("RotateTransformer", String.format("Rotating: %s at position: %.2f width: %d " +
-                "height: %d", view
-                .toString(), position, pageWidth, pageHeight));
-//        view.setPivotX(0);
+        view.setPivotX(pageWidth / 2);
         view.setPivotY(pageHeight);
 
         if (position <= -1) { // [-Infinity,-1]
             // This page is way off-screen to the left.
             view.setAlpha(0);
-
         } else if (position < 1) { // (-1,1)
-            // Modify the default slide transition to shrink the page as well
-            float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
             view.setTranslationX((-position) * pageWidth); //shift the view over
             view.setRotation(60 * position);
 
-            // Fade the page relative to its size.
-            view.setAlpha(MIN_ALPHA + (scaleFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 -
-                    MIN_ALPHA));
-
+            // Fade the page relative to its position.
+            view.setAlpha(1 - Math.abs(position));
         } else { // (1,+Infinity]
             // This page is way off-screen to the right.
             view.setAlpha(0);
