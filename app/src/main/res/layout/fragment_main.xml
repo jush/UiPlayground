@@ -15,14 +15,14 @@
     app:useDefaultMargins="false"
     tools:context=".MainActivity$PlaceholderFragment">
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/topLeftSeparator"
         android:layout_height="20dp"
         app:layout_columnSpan="3"
         app:layout_columnWeight="1"
         app:layout_gravity="fill_horizontal"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/leftVerticalSeparator"
         android:layout_width="30dp"
         app:layout_gravity="fill_vertical"
@@ -35,13 +35,13 @@
         app:layout_gravity="center_horizontal|top"
         app:layout_rowSpan="3"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/rightVerticalSeparator"
         android:layout_width="30dp"
         app:layout_gravity="fill_vertical"
         app:layout_rowSpan="13"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/topRightSeparator"
         android:layout_height="20dp"
         app:layout_columnSpan="3"
@@ -63,7 +63,7 @@
         app:layout_gravity="center"
         app:layout_rowSpan="2"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/middleSeparator"
         android:layout_height="20dp"
         app:layout_column="0"
@@ -71,7 +71,7 @@
         app:layout_gravity="fill_horizontal"
         app:layout_row="3"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/bottomLeftSeparator"
         android:layout_height="20dp"
         app:layout_columnSpan="3"
@@ -97,7 +97,7 @@
         app:layout_row="5"
         app:layout_rowSpan="2"/>
 
-    <android.widget.Space
+    <android.support.v7.widget.Space
         android:id="@+id/bottomRightSeparator"
         android:layout_height="20dp"
         app:layout_column="7"
