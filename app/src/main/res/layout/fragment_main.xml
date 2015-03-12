@@ -2,7 +2,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -12,7 +11,7 @@
     app:columnCount="10"
     app:layout_gravity="center_horizontal"
     app:orientation="horizontal"
-    app:rowCount="15"
+    app:rowCount="13"
     app:useDefaultMargins="false"
     tools:context=".MainActivity$PlaceholderFragment">
 
@@ -116,17 +115,5 @@
         app:layout_gravity="bottom|left"
         app:layout_row="5"
         app:layout_rowSpan="2"/>
-
-    <android.widget.Space
-        android:id="@+id/bottomSeparator"
-        android:layout_height="50dp"
-        app:layout_columnSpan="10"
-        app:layout_gravity="fill_horizontal"/>
-
-    <ImageView
-        android:id="@+id/bottom"
-        android:src="@android:drawable/sym_def_app_icon"
-        app:layout_columnSpan="10"
-        app:layout_gravity="center_horizontal|top"/>
 
 </android.support.v7.widget.GridLayout>
