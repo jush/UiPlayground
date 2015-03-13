@@ -16,7 +16,7 @@ public class UiPlaygroundApplication extends Application {
         this.component = Dagger_ApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
-        component.injectApplication(this);
+        component.inject(this);
     }
 
     ApplicationComponent getComponent() {

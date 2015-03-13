@@ -1,7 +1,6 @@
 package org.jush.uiplayground;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import org.jush.uiplayground.views.HomeView;
+import org.jush.uiplayground.injection.Dagger_DevicesFragmentComponent;
+import org.jush.uiplayground.injection.DevicesFragmentComponent;
+import org.jush.uiplayground.presenters.DevicesPresenter;
+import org.jush.uiplayground.views.DevicesView;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -19,7 +23,7 @@ import butterknife.InjectView;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment implements HomeView {
+public class DevicesFragment extends Fragment implements DevicesView {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -28,20 +32,23 @@ public class PlaceholderFragment extends Fragment implements HomeView {
 
     @InjectView(R.id.device_container)
     GridLayout deviceContainer;
+    @Inject
+    DevicesPresenter presenter;
+    private DevicesFragmentComponent component;
 
     /**
      * Use {@link #newInstance(int)}
      */
     @Deprecated
-    public PlaceholderFragment() {
+    public DevicesFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static DevicesFragment newInstance(int sectionNumber) {
+        DevicesFragment fragment = new DevicesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -59,12 +66,24 @@ public class PlaceholderFragment extends Fragment implements HomeView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                addDevice(R.string.app_name, android.R.drawable.sym_def_app_icon);
-            }
-        }, 2000);
+        this.component = Dagger_DevicesFragmentComponent.builder()
+                .applicationComponent(((UiPlaygroundApplication) getActivity().getApplication())
+                        .getComponent())
+                .build();
+        component.inject(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.takeView(this);
+        presenter.fetchAndAddDevices();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        presenter.dropView();
     }
 
     @Override
