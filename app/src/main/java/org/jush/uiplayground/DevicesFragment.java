@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import org.jush.uiplayground.injection.Dagger_DevicesFragmentComponent;
+import org.jush.uiplayground.injection.DaggerDevicesFragmentComponent;
 import org.jush.uiplayground.injection.DevicesFragmentComponent;
 import org.jush.uiplayground.presenters.DevicesPresenter;
 import org.jush.uiplayground.views.DevicesView;
@@ -66,7 +66,7 @@ public class DevicesFragment extends Fragment implements DevicesView {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.component = Dagger_DevicesFragmentComponent.builder()
+        this.component = DaggerDevicesFragmentComponent.builder()
                 .applicationComponent(((UiPlaygroundApplication) getActivity().getApplication())
                         .getComponent())
                 .build();

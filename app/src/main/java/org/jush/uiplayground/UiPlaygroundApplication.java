@@ -4,7 +4,7 @@ import android.app.Application;
 
 import org.jush.uiplayground.injection.ApplicationComponent;
 import org.jush.uiplayground.injection.ApplicationModule;
-import org.jush.uiplayground.injection.Dagger_ApplicationComponent;
+import org.jush.uiplayground.injection.DaggerApplicationComponent;
 
 public class UiPlaygroundApplication extends Application {
     private ApplicationComponent component;
@@ -13,7 +13,7 @@ public class UiPlaygroundApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        this.component = Dagger_ApplicationComponent.builder()
+        this.component = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
         component.inject(this);
